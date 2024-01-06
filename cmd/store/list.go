@@ -71,6 +71,7 @@ var listCmd = &cobra.Command{
 		if err != nil {
 			return fmt.Errorf("failed to initialize FGA Client due to %w", err)
 		}
+		fmt.Println("show cmd called: ", cmd.Flags())
 
 		maxPages, _ := cmd.Flags().GetInt("max-pages")
 		if err != nil {
