@@ -71,7 +71,16 @@ var listCmd = &cobra.Command{
 		if err != nil {
 			return fmt.Errorf("failed to initialize FGA Client due to %w", err)
 		}
-		fmt.Println("show cmd called: ", cmd.Flags())
+
+		flagNames := []string{
+			"api-url", "api-token", "api-token-issuer",
+			"api-audience", "client-id", "config", "server-url",
+		}
+		for _, flagName := range flagNames {
+			if flagValue, err := cmd.Flags().GetString(flagName); err == nil {
+				fmt.Printf("%s: %s\n", flagName, flagValue)
+			}
+		}
 
 		maxPages, _ := cmd.Flags().GetInt("max-pages")
 		if err != nil {
