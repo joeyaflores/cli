@@ -66,7 +66,7 @@ func init() {
 	rootCmd.PersistentFlags().String("api-audience", "", "API Audience. Used when performing the Client Credentials flow")
 	rootCmd.PersistentFlags().String("client-id", "", "Client ID. Sent to the Token Issuer during the Client Credentials flow")         //nolint:lll
 	rootCmd.PersistentFlags().String("client-secret", "", "Client Secret. Sent to the Token Issuer during the Client Credentials flow") //nolint:lll
-	rootCmd.PersistentFlags().BoolP("verbose", "v", false, "Enable detailed diagnostic output")
+	rootCmd.PersistentFlags().BoolP("verbose", "v", false, "Detailed diagnostic output")
 
 	rootCmd.MarkFlagsRequiredTogether(
 		"api-token-issuer",

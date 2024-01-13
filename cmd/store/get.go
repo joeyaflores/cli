@@ -51,6 +51,19 @@ var getCmd = &cobra.Command{
 			return fmt.Errorf("failed to initialize FGA Client due to %w", err)
 		}
 
+		if verbose, err := cmd.Flags().GetBool("verbose"); err == nil && verbose {
+			fmt.Println("--- FGA Client Configuration ---")
+			flagNames := []string{
+				"api-url", "api-token", "api-token-issuer",
+				"api-audience", "client-id", "config", "server-url",
+			}
+			for _, flagName := range flagNames {
+				if flagValue, err := cmd.Flags().GetString(flagName); err == nil {
+					fmt.Printf("%v: %v\n", flagName, flagValue)
+				}
+			}
+		}
+
 		response, err := getStore(clientConfig, fgaClient)
 		if err != nil {
 			return err

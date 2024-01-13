@@ -72,6 +72,9 @@ var listCmd = &cobra.Command{
 			return fmt.Errorf("failed to initialize FGA Client due to %w", err)
 		}
 
+		if verbose, err := cmd.Flags().GetBool("verbose"); err == nil && verbose {
+			fmt.Println("Verbose output enabled")
+		}
 		flagNames := []string{
 			"api-url", "api-token", "api-token-issuer",
 			"api-audience", "client-id", "config", "server-url",
@@ -98,4 +101,5 @@ var listCmd = &cobra.Command{
 
 func init() {
 	listCmd.Flags().Int("max-pages", MaxStoresPagesLength, "Max number of pages to get.")
+	listCmd.Flags().BoolP("verbose", "v", false, "Verbose output")
 }
